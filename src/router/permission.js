@@ -5,9 +5,8 @@ import 'nprogress/nprogress.css'
 
 router.beforeEach((to,from,next)=>{
     if(to.matched.some(res=>res.meta.isLogin)){//判断是否需要登录
-        //let token = getCookie('token').length;
-        console.log(to.path,88)
-        if (getCookie('token')) {
+        let tokens = getCookie('token');
+        if (getCookie('token')||tokens) {
             NProgress.start();
             next();
         }else{

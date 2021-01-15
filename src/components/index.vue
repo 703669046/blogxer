@@ -6,13 +6,23 @@
 
 <script>
 import pHome from './page/Home'
+import pLogin from './page/login'
+import {getCookie} from '@/utils/setcookie'
 export default {
     components:{
-        pHome
+        pHome,
+        pLogin
     },
     data() {
         return {
             pageModel:'pHome'
+        }
+    },
+    mounted(){
+        if(getCookie('token')){
+            this.pageModel='pHome'
+        }else{
+            this.pageModel='pLogin'
         }
     }
 };

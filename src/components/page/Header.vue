@@ -3,6 +3,9 @@
         <nav class="head">
             <router-link to="/" class="logo-box">博客云</router-link>
             <div class="menu-box">
+                <div>
+                    <v-search></v-search>
+                </div>
                 <div class="menut-i">
                     <el-tooltip class="item" effect="dark" content="发布我的帖子" placement="bottom">
                         <i class="el-icon-circle-plus-outline add-post" @click="handleAddPost"></i>
@@ -43,6 +46,7 @@
 </template>
 
 <script>
+import vSearch from './Search'
 import { mapGetters } from "vuex";
 import {clearLogin} from './api/index'
 import {removeCookie} from '@/utils/setcookie'
@@ -51,12 +55,21 @@ export default {
         return {
             activeIndex: "1",
             activeIndex2: "1",
-            circleUrl:
-                "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            circleUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
         };
     },
+    components:{
+        vSearch
+    },
     computed: {
-        ...mapGetters(["nickName",'figure_url'])
+        ...mapGetters(["nickName",'figure_url','clearState'])
+    },
+    created(){
+        if(this.figure_url){
+            this.circleUrl=`http://localhost:76${this.figure_url}`;
+        }else{
+            this.circleUrl="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+        }
     },
     methods: {
         handleSelect(key, keyPath) {
@@ -69,15 +82,11 @@ export default {
             this.$router.go(-1); //返回上一层
         },
         async handleCommand(command) {
-            this.$message("click on item " + command);
+            // this.$message("click on item " + command);
             let res;
             if(command==='b'){
-                res = await clearLogin();
-                if(res.success){
-                    sessionStorage.clear();
-                    removeCookie('token')
-                    this.$router.push({ path: "/login" });
-                }
+                this.$store.dispatch('system/clearLogin')
+                this.$router.push('/login')
             }
         }
     }

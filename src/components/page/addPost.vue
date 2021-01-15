@@ -26,7 +26,7 @@
                     ref="category"
                     v-model="checkedData"
                     :options="menutList"
-                    :props="{ expandTrigger:'hover',children:'son',label:'auth_name',value:'id',checkStrictly: true}"
+                    :props="{ expandTrigger:'hover',children:'children',label:'auth_name',value:'id',checkStrictly: true}"
                     @change="changeCheckedData"
                 ></el-cascader>
             </el-form-item>
@@ -81,16 +81,11 @@ export default {
             }
         },
         beforeAvatarUpload(file) {
-            const isJPG = file.type === "image/jpeg";
-            const isLt2M = file.size / 1024 / 1024 < 2;
-
-            if (!isJPG) {
-                this.$message.error("上传头像图片只能是 JPG 格式!");
-            }
+            const isLt2M = file.size / 1024 / 1024 < 5;
             if (!isLt2M) {
-                this.$message.error("上传头像图片大小不能超过 2MB!");
+                this.$message.error("上传图片大小不能超过5MB!");
             }
-            return isJPG && isLt2M;
+            return  isLt2M;
         },
         async addPost() {
             this.submitData.publisher_id = sessionStorage.getItem("user_id");

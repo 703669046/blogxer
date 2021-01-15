@@ -266,8 +266,8 @@ export default {
             transform: translateY(0);
         }
         100% {
-            -webkit-transform: translateY(-120vh) rotate(600deg);
-            transform: translateY(-120vh) rotate(600deg);
+            -webkit-transform: translateY(-150vh) rotate(600deg);
+            transform: translateY(-150vh) rotate(600deg);
         }
     }
     @keyframes square {
@@ -276,8 +276,8 @@ export default {
             transform: translateY(0);
         }
         100% {
-            -webkit-transform: translateY(-120vh) rotate(600deg);
-            transform: translateY(-120vh) rotate(600deg);
+            -webkit-transform: translateY(-150vh) rotate(600deg);
+            transform: translateY(-150vh) rotate(600deg);
         }
     }
 }

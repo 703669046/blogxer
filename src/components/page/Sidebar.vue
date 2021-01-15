@@ -4,8 +4,7 @@
             default-active="1-4-1"
             class="el-menu-vertical-demo"
             active-text-color="#42b983"
-            @open="handleOpen"
-            @close="handleClose"
+            @select="handleSelect"
             :collapse="isCollapse"
             unique-opened
             router
@@ -13,7 +12,7 @@
             <template v-for="item in itemList">
                 <!-- 多级 -->
                 <template v-if="item.children.length">
-                    <el-submenu :index="item.path" :key="item.path">
+                    <el-submenu :index="item.path" :key="item.id">
                         <template slot="title">
                             <i :class="item.icon" class="iconfont"></i>
                             <span slot="title">{{ item.auth_name }}</span>
@@ -23,7 +22,7 @@
                             <el-submenu
                                 v-if="subItem.children.length"
                                 :index="subItem.path"
-                                :key="subItem.path"
+                                :key="subItem.id"
                             >
                                 <template slot="title">
                                     <i :class="isubItem.icon" class="iconfont"></i>
@@ -39,7 +38,7 @@
                                 </el-menu-item>
                             </el-submenu>
 
-                            <el-menu-item v-else :index="subItem.path" :key="subItem.path">
+                            <el-menu-item v-else :index="subItem.path" :key="subItem.id">
                                 <i :class="subItem.icon" class="iconfont"></i>
                                 <span slot="title">{{ subItem.auth_name }}</span>
                             </el-menu-item>
@@ -48,7 +47,7 @@
                 </template>
                 <!-- 只有一级 -->
                 <template v-else>
-                    <el-menu-item :index="item.path" :key="item.path">
+                    <el-menu-item :index="item.path" :key="item.id">
                         <i :class="item.icon" class="iconfont"></i>
                         <span slot="title">{{ item.auth_name }}</span>
                     </el-menu-item>
@@ -65,26 +64,35 @@ export default {
     data() {
         return {
             isCollapse: false,
-            itemList:[],
+            itemList: []
         };
     },
     created() {
         // this.handleLoad();
-        console.log(this.menutList);
-        this.itemList=this.menutList.sort(this.sortId)
+        if (this.menutList == null) {
+            this.$store.dispatch("system/clearLogin");
+        } else {
+            this.itemList = this.menutList.sort(this.sortId);
+        }
     },
     computed: {
         ...mapGetters(["menutList"])
     },
     methods: {
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
+        handleSelect(key, keyPath) {
+           
         },
         sortId(a, b) {
             return a.sort - b.sort;
+        },
+        selectPath(path, list) {
+            for (let i=0;i<list.length;i++) {
+                if (list[i].path === path) {
+                    return list[i].id;
+                } else {
+                    this.selectPath(path, list[i].children);
+                }
+            }
         }
     }
 };

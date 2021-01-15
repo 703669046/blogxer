@@ -42,7 +42,7 @@ export default new Router({
           },
         },
         {
-          path:'/index',
+          path: '/index',
           name: '首页',
           component: Pindex,
           meta: {
@@ -50,7 +50,7 @@ export default new Router({
           },
         },
         {
-          path:'/web/javascript',
+          path: '/web/javascript',
           name: 'javascript',
           component: Pjavascript,
           meta: {
@@ -58,7 +58,15 @@ export default new Router({
           },
         },
         {
-          path:'/web/html',
+          path: '/web/javascript/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/javascript/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/web/html',
           name: 'html',
           component: Phtml,
           meta: {
@@ -66,7 +74,7 @@ export default new Router({
           },
         },
         {
-          path:'/web/css',
+          path: '/web/css',
           name: 'css',
           component: Pcss,
           meta: {
@@ -74,7 +82,7 @@ export default new Router({
           },
         },
         {
-          path:'/web/jquery',
+          path: '/web/jquery',
           name: 'jquery',
           component: Pjquery,
           meta: {
@@ -82,7 +90,7 @@ export default new Router({
           },
         },
         {
-          path:'/web/react',
+          path: '/web/react',
           name: 'react',
           component: Preact,
           meta: {
@@ -90,7 +98,7 @@ export default new Router({
           },
         },
         {
-          path:'/web/uni-app',
+          path: '/web/uni-app',
           name: 'uni-app',
           component: Puniapp,
           meta: {
@@ -98,7 +106,7 @@ export default new Router({
           },
         },
         {
-          path:'/backend/java',
+          path: '/backend/java',
           name: 'java',
           component: Pjava,
           meta: {
@@ -106,7 +114,7 @@ export default new Router({
           },
         },
         {
-          path:'/backend/php',
+          path: '/backend/php',
           name: 'php',
           component: Pphp,
           meta: {
@@ -114,7 +122,7 @@ export default new Router({
           },
         },
         {
-          path:'/system',
+          path: '/system',
           name: '系统',
           component: Psystem,
           meta: {
@@ -122,7 +130,7 @@ export default new Router({
           },
         },
         {
-          path:'/wiki',
+          path: '/wiki',
           name: '百科',
           component: Pwiki,
           meta: {
@@ -130,7 +138,7 @@ export default new Router({
           },
         },
         {
-          path:'/anthology',
+          path: '/anthology',
           name: '文集',
           component: Panthology,
           meta: {
@@ -138,17 +146,17 @@ export default new Router({
           },
         },
         {
-          path:'/other',
+          path: '/other',
           name: '其他',
           component: Pother,
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
         },
-        
+
       ]
     },
-    
+
     {
       path: '/login',
       name: '',

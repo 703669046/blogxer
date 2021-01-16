@@ -4,37 +4,43 @@
         <div class="main-body">
             <v-sidebar class="sidebar-box"></v-sidebar>
             <div class="main-box box animated fadeIn">
-                <router-view class="main-view"/>
+                <transition
+                    enter-active-class="animate__animated animate__fadeInLeft"
+                >
+                    <router-view class="main-view" />
+                </transition>
             </div>
+            <el-backtop
+                target=".page-component__scroll .el-scrollbar__wrap el-scrollbar__wraps "
+            >返回顶部</el-backtop>
         </div>
-        
     </div>
 </template>
 
 <script>
-import vHead from './Header'
-import vSidebar from './Sidebar'
+import vHead from "./Header";
+import vSidebar from "./Sidebar";
 export default {
-    components:{
+    components: {
         vHead,
         vSidebar
     },
     data() {
         return {
             msg: ""
-        }
+        };
     }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.head-box{
+.head-box {
     z-index: 999;
 }
-.main-body{
+.main-body {
     width: 100%;
-    position:fixed;
+    position: fixed;
     left: 0;
     z-index: 1;
     top: 70px;
@@ -44,10 +50,17 @@ export default {
     // .sidebar{
     //     border-right: solid 1px #e6e6e6;
     // }
-    .main-box{
+    .main-box {
         width: 88vw;
         height: 94vh;
         overflow: auto;
+        background-color: #fff;
+    }
+    .el-scrollbar__wraps {
+        position: fixed;
+        right: 30px;
+        bottom: 100px;
+        z-index: 8;
     }
 }
 </style>

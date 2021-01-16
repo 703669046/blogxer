@@ -10,6 +10,8 @@ import less from 'less'
 
 import './router/permission'
 
+import './components/index'
+
 // import router from './router'
 
 

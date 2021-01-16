@@ -1,20 +1,22 @@
 <template>
     <div class="containers">
-        <div v-for="(item,index) in dataList" :key="index">
-            <router-link :to="'/web/javascript/info?id='+item.id">
-                <div class="list-item">
-                    <div class="block" v-if="item.icon_src">
-                        <el-image
-                            style="width: 100px; height: 100px"
-                            :src="'http://localhost:76'+item.icon_src"
-                            fit="scale-down"
-                        ></el-image>
+        <div v-if="dataList.length!=0">
+            <div v-for="(item,index) in dataList" :key="index" class="evey-item">
+                <router-link class="evey-item-a" :to="'/web/javascript/info?id='+item.id">
+                    <div class="list-item">
+                        <div class="block" v-if="item.icon_src">
+                            <el-image
+                                style="width: 100px; height: 100px"
+                                :src="'http://localhost:76'+item.icon_src"
+                                fit="scale-down"
+                            ></el-image>
+                        </div>
+                        <h2>{{item.title}}</h2>
                     </div>
-                    <h2>{{item.title}}</h2>
-                </div>
-            </router-link>
-            <el-divider></el-divider>
+                </router-link>
+            </div>
         </div>
+        <emptys v-else></emptys>
     </div>
 </template>
 
@@ -54,12 +56,25 @@ export default {
 
 <style lang="less" scoped>
 .containers {
-    .list-item {
-        display: flex;
-        flex-direction: row;
-        .block {
-            margin-right: 20px;
+    .evey-item {
+        padding: 20px 30px;
+        background-color: #f8f8f8;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        .evey-item-a {
+            color:black;
+            .list-item {
+                display: flex;
+                flex-direction: row;
+                .block {
+                    margin-right: 20px;
+                }
+            }
         }
+    }
+    .evey-item:hover{
+        background-color: rgba(46, 139, 86, 0.233);
+        // box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.1);
     }
 }
 </style>

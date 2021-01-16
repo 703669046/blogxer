@@ -3,6 +3,7 @@
         <el-menu
             default-active="1-4-1"
             class="el-menu-vertical-demo"
+            :default-active="onRoutes"
             active-text-color="#42b983"
             @select="handleSelect"
             :collapse="isCollapse"
@@ -76,7 +77,10 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["menutList"])
+        ...mapGetters(["menutList"]),
+        onRoutes() {
+            return this.$route.path.replace('', '');
+        }
     },
     methods: {
         handleSelect(key, keyPath) {
@@ -85,15 +89,6 @@ export default {
         sortId(a, b) {
             return a.sort - b.sort;
         },
-        selectPath(path, list) {
-            for (let i=0;i<list.length;i++) {
-                if (list[i].path === path) {
-                    return list[i].id;
-                } else {
-                    this.selectPath(path, list[i].children);
-                }
-            }
-        }
     }
 };
 </script>

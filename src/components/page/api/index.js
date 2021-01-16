@@ -23,3 +23,5 @@ export function getMeunList(){
 export function addPostData(data){
     return post('index/addPosts',data)
 }
+
+export const searchResult = param => post('index/searche',param||{});

@@ -1,43 +1,48 @@
 <template>
     <div class="animated rolln page-body">
-        <div class="login">
-            <h2 class="item-title">博客云用户登录</h2>
-            <div class="input-box">
-                <el-form ref="form" :model="form">
-                    <el-form-item>
-                        <el-input
-                            v-model="form.username"
-                            prefix-icon="el-icon-user"
-                            placeholder="请输入账户"
-                        ></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-input
-                            type="password"
-                            v-model="form.password"
-                            prefix-icon="el-icon-unlock"
-                            placeholder="请输入密码"
-                        ></el-input>
-                    </el-form-item>
-                    <el-form-item class="verification-code">
-                        <el-input
-                            v-model="form.code"
-                            class="verification-input"
-                            prefix-icon="el-icon-key"
-                            placeholder="请输入验证码"
-                        ></el-input>
-                        <img @click="handleLoad" class="verification-img" :src="captcha" />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" :loading="btnLoading" @click="submitForm">提交</el-button>
-                    </el-form-item>
-                    <el-form-item class="btn-box">
-                        <router-link to="/register" class="btn btn1">新用户注册》》</router-link>
-                        <router-link to="/forget" class="btn btn2">找回密码</router-link>
-                    </el-form-item>
-                </el-form>
+        <transition
+            enter-active-class="animate__animated animate__slideInRight"
+            leave-active-class="animate__animated animate__slideOutLeft"
+        >
+            <div class="login">
+                <h2 class="item-title">博客云用户登录</h2>
+                <div class="input-box">
+                    <el-form ref="form" :model="form">
+                        <el-form-item>
+                            <el-input
+                                v-model="form.username"
+                                prefix-icon="el-icon-user"
+                                placeholder="请输入账户"
+                            ></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-input
+                                type="password"
+                                v-model="form.password"
+                                prefix-icon="el-icon-unlock"
+                                placeholder="请输入密码"
+                            ></el-input>
+                        </el-form-item>
+                        <el-form-item class="verification-code">
+                            <el-input
+                                v-model="form.code"
+                                class="verification-input"
+                                prefix-icon="el-icon-key"
+                                placeholder="请输入验证码"
+                            ></el-input>
+                            <img @click="handleLoad" class="verification-img" :src="captcha" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" :loading="btnLoading" @click="submitForm">提交</el-button>
+                        </el-form-item>
+                        <el-form-item class="btn-box">
+                            <router-link to="/reigter" class="btn btn1">新用户注册》》</router-link>
+                            <router-link to="/forget" class="btn btn2">找回密码</router-link>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </div>
-        </div>
+        </transition>
         <ul class="bg-bubbles">
             <li></li>
             <li></li>
@@ -64,7 +69,7 @@ export default {
         return {
             form: {},
             captcha: undefined,
-            btnLoading:false
+            btnLoading: false
         };
     },
     mounted() {
@@ -93,17 +98,27 @@ export default {
                 this.$message.error("请输入验证码");
                 return;
             }
-            this.btnLoading=true;
+            this.btnLoading = true;
             let res = await goLoginUser(this.form);
             if (res.success) {
                 setCookie("token", res.data.token, 1800);
+                let UserMenu=res.data.menutList.sort(this.sortId);
                 this.$store.dispatch("system/setUserInfo", res.data);
-                this.$router.push({ path: "/" });
-            }else{
-              this.btnLoading=false;
-              this.handleLoad();
+                const urlPath = UserMenu[0].children.length
+                    ? UserMenu[0].children[0].path
+                    : UserMenu[0].path;
+                this.$router.push({
+                    path: urlPath
+                });
+                // this.$router.push({ path: "/" });
+            } else {
+                this.btnLoading = false;
+                this.handleLoad();
             }
-        }
+        },
+        sortId(a, b) {
+            return a.sort - b.sort;
+        },
     }
 };
 </script>

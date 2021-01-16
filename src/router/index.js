@@ -74,9 +74,25 @@ export default new Router({
           },
         },
         {
+          path: '/web/html/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/html/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/web/css',
           name: 'css',
           component: Pcss,
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/web/css/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/css/dataInfo'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -90,9 +106,25 @@ export default new Router({
           },
         },
         {
+          path: '/web/jquery/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/jquery/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/web/react',
           name: 'react',
           component: Preact,
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/web/react/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/react/dataInfo'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -106,9 +138,25 @@ export default new Router({
           },
         },
         {
+          path: '/web/uni-app/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/web/uniapp/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/backend/java',
           name: 'java',
           component: Pjava,
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/backend/java/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/backend/java/dataInfo'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -122,9 +170,25 @@ export default new Router({
           },
         },
         {
+          path: '/backend/php/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/backend/php/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/system',
           name: '系统',
           component: Psystem,
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/system/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/system/dataInfo'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -138,6 +202,14 @@ export default new Router({
           },
         },
         {
+          path: '/wiki/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/wiki/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/anthology',
           name: '文集',
           component: Panthology,
@@ -146,9 +218,25 @@ export default new Router({
           },
         },
         {
+          path: '/anthology/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/anthology/dataInfo'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
           path: '/other',
           name: '其他',
           component: Pother,
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/other/info',
+          name: '详情',
+          component: resolve => require(['@/views/pc/other/dataInfo'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },

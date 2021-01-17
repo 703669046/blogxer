@@ -1,6 +1,9 @@
 <template>
     <div class="search-box">
-        <el-input placeholder="搜索" type="search"  v-model="search.title" @input="handleSearch" class="input-with-select"></el-input>
+        <el-input placeholder="搜索" type="search" placement="bottom" v-model.trim="search.title" @input="handleSearch" class="input-with-select"></el-input>
+        <!-- <ul class="link-box" v-if="linkList.length">
+            <li v-for="(item,index) in linkList" :key="index"><router-link :to="`${item.path}/info?id=${item.id}`">{{item.title}}</router-link></li>
+        </ul> -->
     </div>
 </template>
 
@@ -19,13 +22,15 @@ export default {
             search:{
                 
             },
+            linkList:[]
         };
     },
     methods: {
         async handleSearch(){
             let res = await searchResult(this.search);
             if(res.success){
-                console.log(res);
+                this.linkList=res.data;
+                this.$store.dispatch("search/setSearchList", this.linkList);
             }
         }
     }
@@ -43,6 +48,10 @@ export default {
         /deep/.el-input__inner:focus{
             border-color: scoped;
         }
+    }
+    .link-box{
+        z-index: 11;
+        background: #fff;
     }
 }
 </style>

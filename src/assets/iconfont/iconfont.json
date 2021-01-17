@@ -1,0 +1,44 @@
+{
+  "id": "2331931",
+  "name": "blogxer",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2758283",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "9686817",
+      "name": "点赞",
+      "font_class": "dianzan",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "11008642",
+      "name": "点赞",
+      "font_class": "dianzan1",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "13332701",
+      "name": "收藏",
+      "font_class": "shoucang1",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "16588043",
+      "name": "点赞",
+      "font_class": "dianzan2",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    }
+  ]
+}

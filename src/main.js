@@ -12,6 +12,8 @@ import './router/permission'
 
 import './components/index'
 
+import './assets/iconfont/iconfont.css'
+
 // import router from './router'
 
 

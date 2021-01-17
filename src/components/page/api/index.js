@@ -24,4 +24,4 @@ export function addPostData(data){
     return post('index/addPosts',data)
 }
 
-export const searchResult = param => post('index/searche',param||{});
+export const searchResult = param => post('index/search',param||{});

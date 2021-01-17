@@ -21,7 +21,11 @@
                         &nbsp;&nbsp;{{obj.browse}}
                     </span>
                     <span class="span-block">
-                        <i class="el-icon-star-on"></i>
+                        <i class="iconfont icondianzan"></i>
+                        赞{{obj.praises}}
+                    </span>
+                    <span class="span-block">
+                        <i class="iconfont iconshoucang"></i>
                         收藏&nbsp;{{obj.collects}}
                     </span>
                     <span class="span-block">
@@ -41,30 +45,47 @@
                     v-if="obj.praise"
                     @click="handlePraises"
                     icon="el-icon-thumb btn"
-                ><span>已点赞</span></el-button>
-                <el-button type="text" v-else @click="handlePraises" icon="el-icon-thumb"><span>点赞</span></el-button>
+                >
+                    <span>已点赞</span>
+                </el-button>
+                <el-button type="text" v-else @click="handlePraises" icon="el-icon-thumb">
+                    <span>点赞</span>
+                </el-button>
                 <el-button
                     type="text"
                     v-if="obj.collect"
                     @click="handleCollects"
                     icon="el-icon-star-on btn"
-                ><span>已收藏</span></el-button>
-                <el-button type="text" v-else @click="handleCollects" icon="el-icon-star-on "><span>收藏</span></el-button>
+                >
+                    <span>已收藏</span>
+                </el-button>
+                <el-button type="text" v-else @click="handleCollects" icon="el-icon-star-on ">
+                    <span>收藏</span>
+                </el-button>
             </div>
+            <v-comment></v-comment>
         </section>
     </div>
 </template>
 
 <script>
 import { getPostInfo, handlePraise, handleCollect } from "./api/index";
+import { mapGetters } from "vuex";
+import vComment from "./comment";
 
 export default {
-    components: {},
-    computed: {},
+    components: {
+        vComment
+    },
     data() {
         return {
-            obj: {}
+            obj: {},
+            circleUrl: undefined,
+            commentObj: {}
         };
+    },
+    computed: {
+        ...mapGetters(["figure_url"])
     },
     created() {
         this.initData();
@@ -136,6 +157,9 @@ export default {
                 .span-block {
                     margin-left: 15px;
                     font-size: 1.4em;
+                    .icondianzan,.iconshoucang {
+                        font-size: 1.1em;
+                    }
                 }
             }
         }
@@ -151,7 +175,7 @@ export default {
                 width: 889px;
                 height: 500px;
             }
-            /deep/img{
+            /deep/img {
                 max-width: 100%;
             }
         }
@@ -163,7 +187,7 @@ export default {
             .btn {
                 display: inline-block;
                 margin-left: 20px;
-                span{
+                span {
                     color: #555666 !important;
                 }
             }

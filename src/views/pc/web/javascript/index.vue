@@ -28,7 +28,7 @@ import { getCookie } from "@/utils/setcookie";
 export default {
     components: {},
     computed: {
-        ...mapGetters([""])
+        ...mapGetters(["searchList"])
     },
     data() {
         return {

@@ -1,24 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import home from '@/components/index'
-import Plogin from '@/components/page/login'
-import Preigter from '@/components/page/reigter'
-import PaddPost from '@/components/page/addPost'
-
-import Pindex from '@/views/pc/index/index'
-import Pjavascript from '@/views/pc/web/javascript/index'
-import Phtml from '@/views/pc/web/html/index'
-import Pcss from '@/views/pc/web/css/index'
-import Pjquery from '@/views/pc/web/jquery/index'
-import Preact from '@/views/pc/web/react/index'
-import Puniapp from '@/views/pc/web/uniapp/index'
-import Pjava from '@/views/pc/backend/java/index'
-import Pphp from '@/views/pc/backend/php/index'
-import Psystem from '@/views/pc/system/index'
-import Pwiki from '@/views/pc/wiki/index'
-import Panthology from '@/views/pc/anthology/index'
-import Pother from '@/views/pc/other/index'
 
 Vue.use(Router)
 
@@ -28,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: '',
-      component: home,
+      component: resolve => require(['@/components/index.vue'], resolve),
       meta: {
         isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
       },
@@ -36,7 +18,7 @@ export default new Router({
         {
           path: '/addPost',
           name: '发布帖子',
-          component: PaddPost,
+          component: resolve => require(['@/components/page/addPost'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -44,7 +26,7 @@ export default new Router({
         {
           path: '/index',
           name: '首页',
-          component: Pindex,
+          component: resolve => require(['@/views/pc/index/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -52,7 +34,7 @@ export default new Router({
         {
           path: '/web/javascript',
           name: 'javascript',
-          component: Pjavascript,
+          component: resolve => require(['@/views/pc/web/javascript/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -68,7 +50,7 @@ export default new Router({
         {
           path: '/web/html',
           name: 'html',
-          component: Phtml,
+          component: resolve => require(['@/views/pc/web/html/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -84,7 +66,7 @@ export default new Router({
         {
           path: '/web/css',
           name: 'css',
-          component: Pcss,
+          component: resolve => require(['@/views/pc/web/css/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -100,7 +82,7 @@ export default new Router({
         {
           path: '/web/jquery',
           name: 'jquery',
-          component: Pjquery,
+          component: resolve => require(['@/views/pc/web/jquery/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -116,7 +98,7 @@ export default new Router({
         {
           path: '/web/react',
           name: 'react',
-          component: Preact,
+          component: resolve => require(['@/views/pc/web/react/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -132,7 +114,7 @@ export default new Router({
         {
           path: '/web/uni-app',
           name: 'uni-app',
-          component: Puniapp,
+          component: resolve => require(['@/views/pc/web/uniapp/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -148,7 +130,7 @@ export default new Router({
         {
           path: '/backend/java',
           name: 'java',
-          component: Pjava,
+          component: resolve => require(['@/views/pc/backend/java/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -164,7 +146,7 @@ export default new Router({
         {
           path: '/backend/php',
           name: 'php',
-          component: Pphp,
+          component: resolve => require(['@/views/pc/backend/php/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -180,7 +162,7 @@ export default new Router({
         {
           path: '/system',
           name: '系统',
-          component: Psystem,
+          component: resolve => require(['@/views/pc/system/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -196,7 +178,7 @@ export default new Router({
         {
           path: '/wiki',
           name: '百科',
-          component: Pwiki,
+          component: resolve => require(['@/views/pc/wiki/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -212,7 +194,7 @@ export default new Router({
         {
           path: '/anthology',
           name: '文集',
-          component: Panthology,
+          component: resolve => require(['@/views/pc/anthology/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -228,7 +210,7 @@ export default new Router({
         {
           path: '/other',
           name: '其他',
-          component: Pother,
+          component: resolve => require(['@/views/pc/other/index'], resolve),
           meta: {
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
@@ -248,7 +230,7 @@ export default new Router({
     {
       path: '/login',
       name: '',
-      component: Plogin,
+      component: resolve => require(['@/components/page/login'], resolve),
       meta: {
         isLogin: false
       },
@@ -256,7 +238,7 @@ export default new Router({
     {
       path: '/reigter',
       name: '',
-      component: Preigter,
+      component: resolve => require(['@/components/page/reigter'], resolve),
       meta: {
         isLogin: false
       },
@@ -264,7 +246,7 @@ export default new Router({
     {
       path: '/*',
       redirect: '/',
-      component: home,
+      component: resolve => require(['@/components/index.vue'], resolve),
       meta: {
         isLogin: true
       },

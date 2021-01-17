@@ -70,25 +70,37 @@ export default {
     },
     created() {
         // this.handleLoad();
-        if (this.menutList == null) {
-            this.$store.dispatch("system/clearLogin");
-        } else {
-            this.itemList = this.menutList.sort(this.sortId);
+        // if (this.menutList == null) {
+        //     this.$store.dispatch("system/clearLogin");
+        // } else {
+            this.itemList = this.menutList
+        // }
+    },
+    watch: {
+        menutList: {
+            handler: function(newVal) {
+                this.itemList = newVal;
+                const urlPath = newVal[0].children.length
+                    ? newVal[0].children[0].path
+                    : newVal[0].path;
+                this.$router.push({
+                    path: urlPath
+                });
+            },
+            deep: true //深度监听
         }
     },
     computed: {
         ...mapGetters(["menutList"]),
         onRoutes() {
-            return this.$route.path.replace('', '');
+            return this.$route.path.replace("", "");
         }
     },
     methods: {
-        handleSelect(key, keyPath) {
-           
-        },
+        handleSelect(key, keyPath) {},
         sortId(a, b) {
             return a.sort - b.sort;
-        },
+        }
     }
 };
 </script>

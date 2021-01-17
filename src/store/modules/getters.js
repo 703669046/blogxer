@@ -7,6 +7,7 @@ const getters = {
     figure_url:state=>state.system.figure_url,
     email:state=>state.system.figure_url,
     clearState:state => state.system.clearState,
-    searchList : state =>state.search.searchList
+    searchList : state =>state.search.searchList,
+    userMenut : state => state.system.userMenut,
 }
 export default getters

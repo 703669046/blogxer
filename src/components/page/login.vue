@@ -104,6 +104,8 @@ export default {
                 setCookie("token", res.data.token, 1800);
                 let UserMenu=res.data.menutList.sort(this.sortId);
                 this.$store.dispatch("system/setUserInfo", res.data);
+                
+                this.$store.dispatch('system/setUserMenut',UserMenu)
                 const urlPath = UserMenu[0].children.length
                     ? UserMenu[0].children[0].path
                     : UserMenu[0].path;

@@ -16,12 +16,12 @@
                 </div>
                 <div>
                     <el-menu
-                        :default-active="activeIndex"
                         active-text-color="#42b983"
                         mode="horizontal"
                         @select="handleSelect"
                     >
-                        <el-menu-item index="1">我的中心</el-menu-item>
+                        <el-menu-item index="1"><span>首页</span></el-menu-item>
+                        <el-menu-item index="2"><span>我的中心</span></el-menu-item>
                         <el-menu-item index="3">消息中心</el-menu-item>
                     </el-menu>
                 </div>
@@ -53,8 +53,6 @@ import {removeCookie} from '@/utils/setcookie'
 export default {
     data() {
         return {
-            activeIndex: "1",
-            activeIndex2: "1",
             circleUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
         };
     },
@@ -62,7 +60,7 @@ export default {
         vSearch
     },
     computed: {
-        ...mapGetters(["nickName",'figure_url','clearState'])
+        ...mapGetters(["nickName",'figure_url','clearState','userMenut'])
     },
     created(){
         if(this.figure_url){
@@ -73,13 +71,25 @@ export default {
     },
     methods: {
         handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+            if(key==1){
+                let list = sessionStorage.getItem('menutList');
+                this.$store.dispatch('system/setUserMenut',JSON.parse(list))
+            }else if(key==2){
+                this.$store.dispatch('system/setUserMenut',this.userMenut)
+            }
         },
         handleAddPost() {
             this.$router.push({ path: "/addPost" });
         },
         handleBack() {
             this.$router.go(-1); //返回上一层
+        },
+        handleTabUser(type){
+            if(type){
+                console.log('首页')
+            }else{
+                console.log('个人中心')
+            }
         },
         async handleCommand(command) {
             // this.$message("click on item " + command);

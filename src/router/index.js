@@ -223,7 +223,56 @@ export default new Router({
             isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
           },
         },
+        
 
+        {
+          path: '/user/userData',
+          name: '个人信息',
+          component: resolve => require(['@/views/pc/userCenter/userData/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/user/comment',
+          name: '我的评论',
+          component: resolve => require(['@/views/pc/userCenter/comment/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/user/getComment',
+          name: '收到的评论',
+          component: resolve => require(['@/views/pc/userCenter/getComment/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/user/collect',
+          name: '我的收藏',
+          component: resolve => require(['@/views/pc/userCenter/collect/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/user/praise',
+          name: '我的点赞',
+          component: resolve => require(['@/views/pc/userCenter/praise/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: '/user/myPost',
+          name: '我的发布',
+          component: resolve => require(['@/views/pc/userCenter/myPost/index'], resolve),
+          meta: {
+            isLogin: true    // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
       ]
     },
 

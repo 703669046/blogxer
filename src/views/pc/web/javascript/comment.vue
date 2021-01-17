@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="comment-list">
-            <div v-for="(item,index) in commentLists" :key="index" >
+            <div v-for="(item,index) in commentLists" :key="index">
                 <div class="comment-list-item">
                     <div class="blocks">
                         <el-avatar :src="item.publisher_icon"></el-avatar>
@@ -42,18 +42,23 @@
                     <div class="user-nickname">{{item.nickname}}：</div>
                     <div class="comment-context">{{item.comment_content}}</div>
                     <div class="comment-more" v-if="item.comment_user_id!=userId">
-                        <el-popover placement="right" trigger="hover">
-                            <el-button type="text" @click="handleReply(item)">回复</el-button>
-                            <el-button type="text" slot="reference">···</el-button>
-                        </el-popover>
+                        <span>{{item.create_time}}</span>
+                        <el-button type="text" @click="handleReply(item)">回复</el-button>
                     </div>
                 </div>
-                <div class="comment-list-item-reply" v-for="(items,indexs) in item.children" :key="indexs">
+                <div
+                    class="comment-list-item-reply"
+                    v-for="(items,indexs) in item.children"
+                    :key="indexs"
+                >
                     <div class="blocks">
                         <el-avatar :src="items.publisher_icon2"></el-avatar>
                     </div>
                     <div class="user-nickname">{{item.nickname}} 回复：</div>
                     <div class="comment-context">{{items.comment_content}}</div>
+                    <div class="comment-more" >
+                        <span>{{item.create_time}}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -210,8 +215,11 @@ export default {
             .comment-context {
                 line-height: 45px;
             }
+            .comment-more{
+                line-height: 45px;
+            }
         }
-        .comment-list-item-reply{
+        .comment-list-item-reply {
             display: flex;
             flex-direction: row;
             margin-left: 55px;
@@ -223,6 +231,9 @@ export default {
             }
             .user-nickname,
             .comment-context {
+                line-height: 45px;
+            }
+            .comment-more{
                 line-height: 45px;
             }
         }

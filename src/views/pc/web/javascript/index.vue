@@ -71,7 +71,7 @@ export default {
             };
             let res = await getListPage(param);
             if (res.success) {
-                this.dataList = res.data;
+                this.dataList = res.data.data;
             }
         }
     }

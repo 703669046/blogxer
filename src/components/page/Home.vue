@@ -7,6 +7,8 @@
                 <transition enter-active-class="animate__animated animate__fadeInLeft">
                     <router-view class="main-view" />
                 </transition>
+
+                <v-footer class="footer"></v-footer>
             </div>
         </div>
     </div>
@@ -50,6 +52,11 @@ export default {
         height: 94vh;
         overflow: auto;
         background-color: #fff;
+        .footer {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
     }
     .el-scrollbar__wraps {
         position: fixed;

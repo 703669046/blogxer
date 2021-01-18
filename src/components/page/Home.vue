@@ -4,15 +4,10 @@
         <div class="main-body">
             <v-sidebar class="sidebar-box"></v-sidebar>
             <div class="main-box box animated fadeIn">
-                <transition
-                    enter-active-class="animate__animated animate__fadeInLeft"
-                >
+                <transition enter-active-class="animate__animated animate__fadeInLeft">
                     <router-view class="main-view" />
                 </transition>
             </div>
-            <el-backtop
-                target=".page-component__scroll .el-scrollbar__wrap el-scrollbar__wraps "
-            >返回顶部</el-backtop>
         </div>
     </div>
 </template>

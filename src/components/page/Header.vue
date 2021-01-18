@@ -16,13 +16,13 @@
                 </div>
                 <div>
                     <el-menu
+                        :default-active="activeIndex"
                         active-text-color="#42b983"
                         mode="horizontal"
                         @select="handleSelect"
                     >
                         <el-menu-item index="1"><span>首页</span></el-menu-item>
                         <el-menu-item index="2"><span>我的中心</span></el-menu-item>
-                        <el-menu-item index="3">消息中心</el-menu-item>
                     </el-menu>
                 </div>
                 <div class="block">
@@ -53,7 +53,8 @@ import {removeCookie} from '@/utils/setcookie'
 export default {
     data() {
         return {
-            circleUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            circleUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            activeIndex:'1',
         };
     },
     components:{

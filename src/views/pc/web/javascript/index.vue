@@ -24,19 +24,22 @@
         <!-- 模糊搜索有值  -->
         <div v-else>
             <div v-for="(item,index) in searchList" :key="index" class="evey-item">
-                    <router-link class="evey-item-a" :to="`${item.path}/info?id=${item.id}`">
-                        <div class="list-item">
-                            <div class="block" v-if="item.icon_src">
-                                <el-image
-                                    style="width: 100px; height: 100px"
-                                    :src="'http://localhost:76'+item.icon_src"
-                                    fit="scale-down"
-                                ></el-image>
-                            </div>
-                            <h2><el-tag type="success">{{item.category_title}}</el-tag>{{item.title}}</h2>
+                <router-link class="evey-item-a" :to="`${item.path}/info?id=${item.id}`">
+                    <div class="list-item">
+                        <div class="block" v-if="item.icon_src">
+                            <el-image
+                                style="width: 100px; height: 100px"
+                                :src="'http://localhost:76'+item.icon_src"
+                                fit="scale-down"
+                            ></el-image>
                         </div>
-                    </router-link>
-                </div>
+                        <h2>
+                            <el-tag type="success">{{item.category_title}}</el-tag>
+                            {{item.title}}
+                        </h2>
+                    </div>
+                </router-link>
+            </div>
         </div>
     </div>
 </template>

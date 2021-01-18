@@ -128,7 +128,7 @@ export default {
             };
             let res = await handleCollect(param);
             if (res.success) {
-                this.$message.success("点赞成功");
+                this.$message.success("收藏成功");
                 this.initData();
             }
         }

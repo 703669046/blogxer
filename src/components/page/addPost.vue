@@ -4,7 +4,7 @@
             <el-form-item label="标题" required>
                 <el-input v-model="submitData.title" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="图标" required>
+            <el-form-item label="图标">
                 <el-upload
                     class="avatar-uploader"
                     :headers="headers"
@@ -25,7 +25,7 @@
                 <el-cascader
                     ref="category"
                     v-model="checkedData"
-                    :options="menutList"
+                    :options="cascaderList"
                     :props="{ expandTrigger:'hover',children:'children',label:'auth_name',value:'id',checkStrictly: true}"
                     @change="changeCheckedData"
                 ></el-cascader>
@@ -50,7 +50,7 @@ export default {
         Editors
     },
     computed: {
-        ...mapGetters(["menutList"])
+        ...mapGetters(["cascaderList"])
     },
     data() {
         return {
@@ -58,6 +58,7 @@ export default {
                 title: undefined
             },
             checkedData: [],
+            nodeType:[],
             imageUrl: undefined,
             headers: {
                 Authorization: getCookie("token")

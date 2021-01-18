@@ -10,6 +10,7 @@ const state = {
     tokens: getCookie('token'),
     menutList: JSON.parse(sessionStorage.getItem('menutList')),
     clearState: 0,
+    cascaderList:JSON.parse(sessionStorage.getItem('menutList')),
     userMenut: [
         {
             id: 1,

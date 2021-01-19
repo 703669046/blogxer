@@ -17,6 +17,7 @@
                         </div>
                     </router-link>
                 </div>
+                <el-pagination background layout="prev, pager, next" :current-page="pageObj.currPage" @current-change="changeCurrent" :total="pageObj.total"></el-pagination>
             </div>
             <!-- 正常列表查询无数据 -->
             <emptys v-else></emptys>
@@ -56,7 +57,12 @@ export default {
     },
     data() {
         return {
-            dataList: []
+            dataList: [],
+            pageObj:{
+                currPage:1,
+                pageSize:10,
+                total:0
+            }
         };
     },
     created() {
@@ -66,13 +72,20 @@ export default {
         async initData() {
             let param = {
                 id: 2,
-                pageSize: 10,
-                currPage: 1
+                pageSize: this.pageObj.pageSize,
+                currPage: this.pageObj.currPage
             };
             let res = await getListPage(param);
             if (res.success) {
                 this.dataList = res.data.data;
+                this.pageObj.total=res.data.total;
+                this.pageObj.pageSize=res.data.pageSize;
+                this.pageObj.currPage=res.data.currPage;
             }
+        },
+        changeCurrent(curr){
+            this.pageObj.currPage=curr;
+            this.initData()
         }
     }
 };
@@ -80,6 +93,7 @@ export default {
 
 <style lang="less" scoped>
 .containers {
+    padding-bottom: 150px;
     .evey-item {
         padding: 20px 30px;
         background-color: #f8f8f8;

@@ -7,3 +7,6 @@ Vue.component('emptys', empty)
 
 import vFooter from './common/footer'
 Vue.component('v-footer',vFooter)
+
+// import vSearch from './common/SearchResult'
+// Vue.component('v-footer',vSearch)

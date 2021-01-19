@@ -1,4 +1,5 @@
 import {get,post} from '@/utils/request'
+import ajax from '@/utils/req'
 
 export const getListPage = param => post('index/postListPage',param||{});
 

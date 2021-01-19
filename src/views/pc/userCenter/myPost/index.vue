@@ -31,6 +31,18 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                    <div class="pagination">
+                    <el-pagination
+                        background
+                        layout="total, sizes, prev, pager, next"
+                        :current-page.sync="currPage"
+                        :page-size="pageSize"
+                        :page-sizes="[5,10,20,50,100,200]"
+                        :total="total"
+                        @current-change="currChange"
+                        @size-change="sizeChange"
+                    ></el-pagination>
+                </div>
             </div>
 
             <!-- 正常列表查询无数据 -->
@@ -76,7 +88,11 @@ export default {
                 1:'待审核',
                 2:'已驳回',
                 3:'已通过'
-            }
+            },
+            pageSize:10,
+            currPage:1,
+            total:0,
+            lastPage:0
         };
     },
     created() {
@@ -84,11 +100,30 @@ export default {
     },
     methods: {
         async initData() {
-            let res = await getListPage();
+            let param = {
+                pageSize:this.pageSize,
+                currPage:this.currPage,
+            }
+            let res = await getListPage(param);
             if (res.success) {
-                this.dataList = res.data;
+                this.dataList = res.data.data;
+                this.pageSize=res.data.pageSize;
+                this.total=res.data.total;
+                // this.lastPage=res.data.last_page;
+                this.currPage=res.data.currPage;
             }
         },
+        //分页
+        currChange(data){
+            this.currPage=data;
+            this.initData();
+        },
+        //条数
+        sizeChange(size){
+            this.pageSize=size;
+            this.initData();
+        }
+
         
     }
 };

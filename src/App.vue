@@ -5,8 +5,34 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { getCookie ,removeCookie} from "@/utils/setcookie";
 export default {
-    name: "App"
+    name: "App",
+    data(){
+        return {
+            token:getCookie('token')
+        }
+    },
+    computed:{
+        ...mapGetters(['tokens'])
+    },
+    watch:{
+        token(newVal){
+            if(!newVal){
+                removeCookie('token');
+                this.$store.dispatch('system/clearLogin')
+                this.$router.push('/login')
+            }
+        },
+        tokens(newVal){
+            if(!newVal){
+                removeCookie('token');
+                this.$store.dispatch('system/clearLogin')
+                this.$router.push('/login')
+            }
+        },
+    }
 };
 </script>
 
